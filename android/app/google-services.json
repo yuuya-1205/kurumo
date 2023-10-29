@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "565500284022",
+    "project_id": "kurumo-dev",
+    "storage_bucket": "kurumo-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565500284022:android:326f80bd394571baa62357",
+        "android_client_info": {
+          "package_name": "com.example.kurumo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZm-DcMPTkfl_PYhI0mucYItX62awc3xY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
