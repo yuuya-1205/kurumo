@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kurumo/component/input_form.dart';
+import 'package:kurumo/component/primary_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -8,31 +9,67 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 200,
-              ),
-              InputForm(
-                labelText: 'メールアドレス',
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              InputForm(
-                labelText: 'パスワード',
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('新規登録'),
-              )
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 80,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 130,
+                  child: Image.asset('assets/images/logo.png'),
+                ),
+                const SizedBox(
+                  height: 56,
+                ),
+                const InputForm(
+                  labelText: 'メールアドレス',
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                const InputForm(
+                  labelText: 'パスワード',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const Text('または'),
+                const SizedBox(
+                  height: 32,
+                ),
+                PrimaryButton(
+                  onPressed: () {},
+                  label: '新規登録',
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                const Text('または'),
+                const SizedBox(
+                  height: 27,
+                ),
+                PrimaryButton(
+                  onPressed: () {},
+                  label: '新規登録',
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                PrimaryButton(
+                  onPressed: () {},
+                  label: '新規登録',
+                ),
+                const SizedBox(
+                  height: 74,
+                ),
+                const Text('新規登録'),
+              ],
+            ),
           ),
         ),
       ),

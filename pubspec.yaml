@@ -24,6 +24,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   json_annotation: ^4.7.0
   cloud_firestore:
+  go_router: ^13.0.0
 
 
 dev_dependencies:
