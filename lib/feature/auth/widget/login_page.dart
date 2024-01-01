@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kurumo/component/input_form.dart';
 import 'package:kurumo/component/primary_button.dart';
-import 'package:kurumo/feature/auth/widget/selected_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
