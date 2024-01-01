@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SelectedPage extends ConsumerWidget {
@@ -10,7 +11,10 @@ class SelectedPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('新規登録'),
+        title: const Text(
+          '新規登録',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -31,7 +35,10 @@ class SelectedPage extends ConsumerWidget {
               height: 56,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                const path = '/vender_register_page';
+                context.go(path);
+              },
               child: SizedBox(
                 height: 160,
                 width: double.infinity,
