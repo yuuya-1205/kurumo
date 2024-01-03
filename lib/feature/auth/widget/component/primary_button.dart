@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor: Colors.amber,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           label,
           style: const TextStyle(
