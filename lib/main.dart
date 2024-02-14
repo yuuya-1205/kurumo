@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kurumo/config/router_provider.dart';
+import 'package:kurumo/config/themes.dart';
 import 'package:kurumo/firebase_options.dart';
 
 void main() async {
@@ -20,7 +21,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: ref.watch(goRouterProvider),
-      theme: ThemeData(),
+      theme: Themes.defaultTheme,
     );
   }
 }

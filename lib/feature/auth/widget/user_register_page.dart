@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kurumo/feature/auth/models/user.dart';
+import 'package:kurumo/feature/auth/provider/auth_provider.dart';
 import 'package:kurumo/feature/auth/widget/component/input_form.dart';
 import 'package:kurumo/feature/auth/widget/component/primary_button.dart';
 
@@ -8,6 +11,7 @@ class UserRegisterPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final uid = ref.watch(uidProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('新規登録'),
@@ -109,7 +113,20 @@ class UserRegisterPage extends ConsumerWidget {
             ),
             PrimaryButton(
               label: 'アカウント作成',
-              onPressed: () {},
+              onPressed: () {
+                const register = User(
+                    firstName: '',
+                    lastName: '',
+                    companyName: '',
+                    phoneNumber: 1,
+                    zipCode: 1,
+                    adress: '',
+                    buildingName: '');
+                FirebaseFirestore.instance
+                    .collection('user')
+                    .doc(uid)
+                    .set(register as Map<String, dynamic>);
+              },
             )
           ],
         ),

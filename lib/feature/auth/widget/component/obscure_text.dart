@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ObscureText extends ConsumerStatefulWidget {
-  const ObscureText({super.key, required this.labelText});
+  const ObscureText({
+    super.key,
+    required this.labelText,
+    this.controller,
+  });
   final String labelText;
+  final TextEditingController? controller;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ObscureTextState();
@@ -15,6 +20,7 @@ class _ObscureTextState extends ConsumerState<ObscureText> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText: _isObscure,
       decoration: InputDecoration(
         suffixIcon: IconButton(

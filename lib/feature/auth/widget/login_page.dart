@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kurumo/config/themes.dart';
 import 'package:kurumo/feature/auth/widget/component/input_form.dart';
 import 'package:kurumo/feature/auth/widget/component/primary_button.dart';
 
@@ -45,8 +46,9 @@ class LoginPage extends StatelessWidget {
                   height: 32,
                 ),
                 PrimaryButton(
+                  backgroundColor: Themes.primaryColor,
                   onPressed: () {},
-                  label: '新規登録',
+                  label: 'ログイン',
                 ),
                 const SizedBox(
                   height: 50,
