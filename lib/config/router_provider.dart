@@ -43,6 +43,12 @@ final goRouterProvider = Provider(
             return const UserRegisterPage();
           },
         ),
+        GoRoute(
+          path: '/top_page',
+          builder: (context, state) {
+            return const UserRegisterPage();
+          },
+        ),
       ],
     );
   },

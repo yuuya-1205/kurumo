@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class InputForm extends StatelessWidget {
   const InputForm({
     super.key,
-    this.labelText,
+    required this.labelText,
     this.controller,
   });
-  final String? labelText;
+  final String labelText;
   final TextEditingController? controller;
 
   @override
