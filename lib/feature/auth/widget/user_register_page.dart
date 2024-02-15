@@ -1,17 +1,46 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kurumo/feature/auth/models/user.dart';
 import 'package:kurumo/feature/auth/provider/auth_provider.dart';
 import 'package:kurumo/feature/auth/widget/component/input_form.dart';
 import 'package:kurumo/feature/auth/widget/component/primary_button.dart';
 
-class UserRegisterPage extends ConsumerWidget {
+class UserRegisterPage extends ConsumerStatefulWidget {
   const UserRegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UserRegisterPageState();
+}
+
+class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final companyNameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final zipCodeController = TextEditingController();
+  final adressController = TextEditingController();
+  final buildingNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    companyNameController.dispose();
+    phoneNumberController.dispose();
+    zipCodeController.dispose();
+    adressController.dispose();
+    buildingNameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final uid = ref.watch(uidProvider);
+    final firestore = FirebaseFirestore.instance.collection('user');
+    print(uid);
     return Scaffold(
       appBar: AppBar(
         title: const Text('新規登録'),
@@ -113,7 +142,7 @@ class UserRegisterPage extends ConsumerWidget {
             ),
             PrimaryButton(
               label: 'アカウント作成',
-              onPressed: () {
+              onPressed: () async {
                 const register = User(
                     firstName: '',
                     lastName: '',
@@ -122,15 +151,15 @@ class UserRegisterPage extends ConsumerWidget {
                     zipCode: 1,
                     adress: '',
                     buildingName: '');
-                FirebaseFirestore.instance
-                    .collection('user')
-                    .doc(uid)
-                    .set(register as Map<String, dynamic>);
+                await firestore.doc(uid).set(register.toJson());
+                const path = '/top_page';
+                context.go(path);
               },
             )
           ],
         ),
       ),
     );
+    ;
   }
 }

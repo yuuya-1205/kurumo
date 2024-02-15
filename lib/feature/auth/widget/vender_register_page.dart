@@ -69,9 +69,9 @@ class _VenderRegisterPageState extends ConsumerState<VenderRegisterPage> {
             PrimaryButton(
               label: '確認メールを送信',
               onPressed: () {
-                FirebaseAuth.instance.createUserWithEmailAndPassword(
-                    email: emailController.text,
-                    password: passwordController.text);
+                // FirebaseAuth.instance.createUserWithEmailAndPassword(
+                //     email: emailController.text,
+                //     password: passwordController.text);
                 const path = '/send_email_page';
                 context.go(path);
               },
