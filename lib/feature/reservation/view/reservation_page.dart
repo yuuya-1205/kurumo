@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ReservationPage extends ConsumerStatefulWidget {
-  const ReservationPage({super.key});
+  const ReservationPage({
+    super.key,
+    required this.navigationShell,
+  });
+
+  final StatefulNavigationShell navigationShell;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>

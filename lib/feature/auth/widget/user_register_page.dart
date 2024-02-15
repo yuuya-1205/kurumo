@@ -160,6 +160,5 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
         ),
       ),
     );
-    ;
   }
 }

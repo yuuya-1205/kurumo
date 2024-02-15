@@ -10,11 +10,12 @@ import 'package:kurumo/feature/auth/widget/send_email_page.dart';
 import 'package:kurumo/feature/auth/widget/user_register_page.dart';
 import 'package:kurumo/feature/auth/widget/vender_register_page.dart';
 import 'package:kurumo/feature/history/view/histry_page.dart';
+import 'package:kurumo/feature/reservation/view/calender_page.dart';
 import 'package:kurumo/feature/reservation/view/reservation_page.dart';
+import 'package:kurumo/feature/reservation/view/tentative_reservation_page.dart';
 import 'package:kurumo/feature/set_up/view/set_up_page.dart';
 import 'package:kurumo/feature/top_page.dart';
 import 'package:kurumo/feature/vender/view/vender_list_page.dart';
-import 'package:kurumo/home_page.dart';
 import 'package:riverpod/riverpod.dart';
 
 ///最初のページってこと？
@@ -33,12 +34,18 @@ import 'package:riverpod/riverpod.dart';
 ///ログインしているかどうかみる。
 ///Firebaseでログイン状態かどうかわかるための方法は？
 ///これを監視する。
-///
+
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final likeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'like');
 final cartNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'cart');
 final profileNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
+final reservationListNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'reservationList');
+final calenderNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'calender');
+final tentativeReservationNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'tentativeReservation');
+
 final goRouterProvider = Provider(
   (ref) {
     return GoRouter(
@@ -51,16 +58,39 @@ final goRouterProvider = Provider(
               return TopPage(navigationShell: navigationShell);
             },
             branches: [
+              ///ここからtabの遷移
               StatefulShellBranch(
                 navigatorKey: homeNavigatorKey,
                 routes: [
-                  GoRoute(
-                    path: '/reservation_page',
-                    pageBuilder: (context, state) => NoTransitionPage(
-                      key: state.pageKey,
-                      child: const ReservationPage(),
-                    ),
-                  ),
+                  StatefulShellRoute.indexedStack(
+                    builder: (context, state, navigationShell) {
+                      return ReservationPage(navigationShell: navigationShell);
+                    },
+                    branches: [
+                      StatefulShellBranch(
+                        routes: [
+                          GoRoute(
+                            path: '/carender_page',
+                            pageBuilder: (context, state) => NoTransitionPage(
+                              key: state.pageKey,
+                              child: const CalenderPage(),
+                            ),
+                          ),
+                        ],
+                      ),
+                      StatefulShellBranch(
+                        routes: [
+                          GoRoute(
+                            path: '/tentative_reservation_page',
+                            pageBuilder: (context, state) => NoTransitionPage(
+                              key: state.pageKey,
+                              child: const TentativeReservationPage(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
                 ],
               ),
               // likeブランチ
