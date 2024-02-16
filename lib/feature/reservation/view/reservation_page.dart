@@ -6,9 +6,11 @@ class ReservationPage extends ConsumerStatefulWidget {
   const ReservationPage({
     super.key,
     required this.navigationShell,
+    required this.children,
   });
 
   final StatefulNavigationShell navigationShell;
+  final List<Widget> children;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -18,6 +20,33 @@ class ReservationPage extends ConsumerStatefulWidget {
 class _ReservationPageState extends ConsumerState<ReservationPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text('こんにちは');
+    return DefaultTabController(
+      length: 3,
+      initialIndex: widget.navigationShell.currentIndex,
+      child: Builder(builder: (context) {
+        return Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              onTap: (index) {
+                ///path を認識させている
+                widget.navigationShell.goBranch(index);
+              },
+              tabs: const [
+                Tab(
+                  text: '予約一覧',
+                ),
+                Tab(
+                  text: 'カレンダー',
+                ),
+                Tab(
+                  text: '仮予約',
+                ),
+              ],
+            ),
+          ),
+          body: TabBarView(children: widget.children),
+        );
+      }),
+    );
   }
 }

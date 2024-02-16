@@ -11,6 +11,7 @@ import 'package:kurumo/feature/auth/widget/user_register_page.dart';
 import 'package:kurumo/feature/auth/widget/vender_register_page.dart';
 import 'package:kurumo/feature/history/view/histry_page.dart';
 import 'package:kurumo/feature/reservation/view/calender_page.dart';
+import 'package:kurumo/feature/reservation/view/reservation_list_page.dart';
 import 'package:kurumo/feature/reservation/view/reservation_page.dart';
 import 'package:kurumo/feature/reservation/view/tentative_reservation_page.dart';
 import 'package:kurumo/feature/set_up/view/set_up_page.dart';
@@ -49,7 +50,7 @@ final tentativeReservationNavigatorKey =
 final goRouterProvider = Provider(
   (ref) {
     return GoRouter(
-      initialLocation: '/reservation_page',
+      initialLocation: '/reservation_list_page',
       navigatorKey: rootNavigatorKey,
       routes: [
         StatefulShellRoute.indexedStack(
@@ -62,11 +63,29 @@ final goRouterProvider = Provider(
               StatefulShellBranch(
                 navigatorKey: homeNavigatorKey,
                 routes: [
-                  StatefulShellRoute.indexedStack(
+                  StatefulShellRoute(
+                    navigatorContainerBuilder:
+                        (context, statefulNavigationShell, children) {
+                      return ReservationPage(
+                        navigationShell: statefulNavigationShell,
+                        children: children,
+                      );
+                    },
                     builder: (context, state, navigationShell) {
-                      return ReservationPage(navigationShell: navigationShell);
+                      return navigationShell;
                     },
                     branches: [
+                      StatefulShellBranch(
+                        routes: [
+                          GoRoute(
+                            path: '/reservation_list_page',
+                            pageBuilder: (context, state) => NoTransitionPage(
+                              key: state.pageKey,
+                              child: const ReservationListPage(),
+                            ),
+                          ),
+                        ],
+                      ),
                       StatefulShellBranch(
                         routes: [
                           GoRoute(
